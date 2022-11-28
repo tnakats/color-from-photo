@@ -1,41 +1,25 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './App.css';
-import Resizer from 'react-image-file-resizer';
-
+//import './colorPicker.js';
 
 function App() {
   const [img, setImg] = useState();
 
-  const onUpload= (e) => {
+  const onUpload = (e) => {
     const [file] = e.target.files;
     setImg(URL.createObjectURL(file));
+    const context = document.getElementsByClassName("canvas").getContext('2d');
+    context.drawImage(img, 400, 200);
   };
-  
-  const resizeFile = (file) =>
-    new Promise((resolve) => {
-      Resizer.imageFileResizer(
-        file,
-        300,
-        300,
-        "JPEG",
-        10,
-        0,
-        (uri) => {
-          resolve (uri);
-        },
-        "base64"
-      );
-    });
 
-  const onFileResize = async (e) => {
-    try {
-      const file = e.target.files[0];
-      const image = await resizeFile(file);
-      console.log(image);
-    }
-    catch (err) {
-      console.log(err);
-    }
+  const changeID = (e) => {
+    console.log("changeID");
+    console.log(e);
+    const element = e.target;
+    //document.getElementsByClassName(e);
+    console.log(element.className);
+    //e.id.setAttribute(this);
+    e.id.setAttribute("current");
   };
 
   return (
@@ -46,18 +30,19 @@ function App() {
           id="fileSelect"
           onChange={onUpload}
           hidden
-          />
-
+        />
+        <canvas id="canvas"></canvas>
         <img className="photo" src={img} alt=""/>
-        
-         <label for="fileSelect">
+        <label for="fileSelect">
           Add Image
         </label>
-        <img className="colorPallette" src={img} alt="" onChange={onFileResize}/>
+        <button className="color1" id="c1" onClick={changeID}/>
+        <button className="color2" id=""/>
+        <button className="color3" id=""/>
+        <button className="color4" id=""/>
+        <button className="color5" id=""/>
     </div>
-
-    
-  );
+  )
 }
 
 

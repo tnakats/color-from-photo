@@ -13,13 +13,19 @@ function App() {
   };
 
   const changeID = (e) => {
-    console.log("changeID");
-    console.log(e);
+    //console.log("changeID");
+    //console.log(e);
     const element = e.target;
     //document.getElementsByClassName(e);
-    console.log(element.className);
+    //console.log(element.className);
     //e.id.setAttribute(this);
-    e.id.setAttribute("current");
+    var change = document.getElementById("current");
+    console.log(change);
+    document.getElementById("current").setAttribute("id", change.className);
+    console.log(change.id);
+    console.log("element" + element.id);
+    document.getElementById(element.id).setAttribute("id", "current");
+    console.log(element.id);
   };
 
   return (
@@ -36,11 +42,11 @@ function App() {
         <label for="fileSelect">
           Add Image
         </label>
-        <button className="color1" id="c1" onClick={changeID}/>
-        <button className="color2" id=""/>
-        <button className="color3" id=""/>
-        <button className="color4" id=""/>
-        <button className="color5" id=""/>
+        <button className="color1" id="current" onClick={changeID}/>
+        <button className="color2" id=" " onClick={changeID}/>
+        <button className="color3" id=" " onClick={changeID}/>
+        <button className="color4" id=" " onClick={changeID}/>
+        <button className="color5" id=" " onClick={changeID}/>
     </div>
   )
 }

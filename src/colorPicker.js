@@ -1,3 +1,4 @@
+// Initial code found on mozilla developer site, modified for use in color-from-photo
 // https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Pixel_manipulation_with_canvas
 
 const img = new Image();
@@ -12,7 +13,7 @@ img.addEventListener("load", () => {
 const hoveredColor = document.getElementById("hovered-color");
 const selectedColor = document.getElementById("selected-color");
 
-function pick(event, destination) {
+export function pick(event, destination) {
   const bounding = canvas.getBoundingClientRect();
   const x = event.clientX - bounding.left;
   const y = event.clientY - bounding.top;
